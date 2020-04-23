@@ -1,0 +1,9 @@
+[Unit]
+Description=Update PTR Records
+
+[Timer]
+OnBootSec=0min
+OnUnitActiveSec=30min
+
+[Install]
+WantedBy=multi-user.target

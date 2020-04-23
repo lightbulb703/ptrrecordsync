@@ -1,0 +1,11 @@
+[Unit]
+Description=PTR Sync
+
+[Service]
+EnvironmentFile=/etc/ptrrecordsync.conf
+User=named
+Type=simple
+Nice=19
+IOSchedulingClass=2
+IOSchedulingPriority=7
+ExecStart=/usr/local/bin/ptrrecordsync.py -z $ZONEFILE -k $KEYFILE
