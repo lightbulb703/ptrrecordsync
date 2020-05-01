@@ -28,7 +28,7 @@ setup(
     author_email='dennis@lbsys.xyz',
     description='Creates PTR records for a DNS Zone',
     license='GPLv3',
-    long_description=readme('README'),
+    long_description=readme('README.md'),
     url='https://github.com/lightbulb703/ptrrecordsync',
     packages=['ptrrecordsync'],
     classifiers=[
