@@ -1,7 +1,7 @@
 # ptrrecordsync
-###########################################
-From a BIND zone file, register PTR records
-###########################################
+#############################################
+ From a BIND zone file, register PTR records
+#############################################
 
 Scenario: You have a DHCP server that can register A record updates to your
 DNS server, but not PTR records.
