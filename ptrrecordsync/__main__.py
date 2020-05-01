@@ -12,28 +12,28 @@ import argparse
 import string
 import subprocess
 import os
+import logging
 
-parser = argparse.ArgumentParser()
-parser.add_argument('-z', '--zonefile',
+logger = logging.getLogger(__name__)
+
+def valid_file(file):
+    if not os.path.isfile(file):
+        print('The file {f} could not be found...'.format(f=file))
+        exit(1)
+    return file
+
+parser = argparse.ArgumentParser(description='PTR Record Sync')
+
+
+parser.add_argument('zonefile', type=valid_file,
     help='Location of the zone file to be processed. This is required.')
-parser.add_argument('-k', '--keyfile',
+parser.add_argument('keyfile', type=valid_file,
     help='Location of the tsig key file. This is required.')
 args = parser.parse_args()
 zonefile = args.zonefile
 keyfile = args.keyfile
 rndcprocess = 'rndc'
 nsupdateprocess = 'nsupdate'
-
-def file_check(**kwargs):
-    file = kwargs.get('file')
-    type = kwargs.get('type')
-    if not file:
-        print('The {t} was not specified...\n'.format(t=type))
-        parser.print_help()
-        exit(1)
-    if not os.path.isfile(file):
-        print('The {t} was not found...\n'.format(t=type))
-        exit(1)
 
 def process_check(**kwargs):
     '''Checking for process in Linux'''
@@ -58,8 +58,6 @@ def main (**kwargs):
     rndcprocess = kwargs.get('rndc')
     nsupdateprocess = kwargs.get('nsupdate')
 
-    file_check(file=zone, type='zone file')
-    file_check(file=key, type='key file')
     process_check(process=rndcprocess)
     process_check(process=nsupdateprocess)
 
