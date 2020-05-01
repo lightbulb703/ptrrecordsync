@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 #import distutils.cmd
 import os
 #from distutils.command.clean import clean as _clean
@@ -24,7 +23,7 @@ class BindTest(test):
 
 setup(
     name='ptrrecordsync',
-    version='0.2.0',
+    version='0.2.1',
     author='Dennis Cole III',
     author_email='dennis@lbsys.xyz',
     description='Creates PTR records for a DNS Zone',
