@@ -1,7 +1,4 @@
-
-#############################################
- From a BIND zone file, register PTR records
-#############################################
+# From a BIND zone file, register PTR records
 
 Scenario: You have a DHCP server that can register A record updates to your
 DNS server, but not PTR records.
@@ -15,19 +12,15 @@ You can run this as a cron job or systemd timer (sample files provided for
 systemd). The configuration file in /etc should have the zone file and key file
 to run the update.
 
-==============
- Installation
-==============
+### Installation
 
-To install, use setup.py::
+To install, use setup.py:
 
     python3 setup.py install
 
-==================
- Running the sync
-==================
+### Running the sync
 
-Usage::
+Usage:
 
     usage: ptrrecordsync.py [-h] [-z ZONEFILE] [-k KEYFILE]
 
