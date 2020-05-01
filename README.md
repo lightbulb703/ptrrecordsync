@@ -1,4 +1,4 @@
-# ptrrecordsync
+
 #############################################
  From a BIND zone file, register PTR records
 #############################################
@@ -15,29 +15,29 @@ You can run this as a cron job or systemd timer (sample files provided for
 systemd). The configuration file in /etc should have the zone file and key file
 to run the update.
 
-============
-Installation
-============
+==============
+ Installation
+==============
 
 To install, use setup.py::
 
-  python3 setup.py install
+    python3 setup.py install
 
-================
-Running the sync
-================
+==================
+ Running the sync
+==================
 
 Usage::
 
-  usage: ptrrecordsync.py [-h] [-z ZONEFILE] [-k KEYFILE]
+    usage: ptrrecordsync.py [-h] [-z ZONEFILE] [-k KEYFILE]
 
-  optional arguments:
-    -h, --help            show this help message and exit
-    -z ZONEFILE, --zonefile ZONEFILE
-                          Location of the zone file to be processed. This is
-                          required.
-    -k KEYFILE, --keyfile KEYFILE
-                          Location of the tsig key file. This is required.
+    optional arguments:
+       -h, --help            show this help message and exit
+       -z ZONEFILE, --zonefile ZONEFILE
+                             Location of the zone file to be processed. This is
+                             required.
+       -k KEYFILE, --keyfile KEYFILE
+                             Location of the tsig key file. This is required.
 
 
 The arguments above are actually required. Any collaboration, recommendations
