@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 __author__ = 'Dennis Cole III'
 __copyright__ = 'Copyright 2020, Lightbulb Systems LLC'
 __license__ = 'GPLv3'

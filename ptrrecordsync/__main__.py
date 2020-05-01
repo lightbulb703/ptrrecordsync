@@ -29,11 +29,6 @@ parser.add_argument('zonefile', type=valid_file,
     help='Location of the zone file to be processed. This is required.')
 parser.add_argument('keyfile', type=valid_file,
     help='Location of the tsig key file. This is required.')
-args = parser.parse_args()
-zonefile = args.zonefile
-keyfile = args.keyfile
-rndcprocess = 'rndc'
-nsupdateprocess = 'nsupdate'
 
 def process_check(**kwargs):
     '''Checking for process in Linux'''
@@ -52,11 +47,12 @@ def nsupdate_cmd(**kwargs):
     process = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
     proc_stdout = process.communicate()[0].strip()
 
-def main (**kwargs):
-    zone = kwargs.get('zone')
-    key = kwargs.get('key')
-    rndcprocess = kwargs.get('rndc')
-    nsupdateprocess = kwargs.get('nsupdate')
+def main():
+    args = parser.parse_args()
+    zonefile = args.zonefile
+    keyfile = args.keyfile
+    rndcprocess = 'rndc'
+    nsupdateprocess = 'nsupdate'
 
     process_check(process=rndcprocess)
     process_check(process=nsupdateprocess)
@@ -65,7 +61,7 @@ def main (**kwargs):
     ttl = '3600'
     arecordlist = []
 
-    with open(zone) as forwardzone:
+    with open(zonefile) as forwardzone:
         for line in forwardzone:
             # I'm trying to find A records with a certain TTL specified above.
             # I'd also like to have my domain name, so that's what I'm trying to
@@ -97,7 +93,7 @@ def main (**kwargs):
         updatecommand = '{delptr}\n{upgptr}\nsend\nshow\nquit'.format(
             delptr=delptrrecord, upgptr = updateptrrecord)
         command = 'nsupdate -k {k} -v << EOF\n{command}\nEOF\n'.format(
-            k=key, command=updatecommand)
+            k=keyfile, command=updatecommand)
 
         nsupdate_cmd(command=command)
 
@@ -106,4 +102,4 @@ def main (**kwargs):
         'rndc sync -clean', stdout=subprocess.PIPE, shell=True)
 
 if __name__ == '__main__':
-    main(zone=zonefile, key=keyfile, rndc=rndcprocess, nsupdate=nsupdateprocess)
+    main()
