@@ -1,8 +1,11 @@
-#import distutils.cmd
 import os
-#from distutils.command.clean import clean as _clean
-#from distutils.command.clean import log
-#from distutils.dir_util import remove_tree
+
+from ptrrecordsync import __author__ as author
+from ptrrecordsync import __version__ as version
+from ptrrecordsync import __license__ as license
+from ptrrecordsync import __maintainer__ as maintainer
+from ptrrecordsync import __email__ as author_email
+from ptrrecordsync import __url__ as url
 
 from setuptools import setup
 from setuptools.command.test import test
@@ -23,13 +26,13 @@ class BindTest(test):
 
 setup(
     name='ptrrecordsync',
-    version='0.2.1',
-    author='Dennis Cole III',
-    author_email='dennis@lbsys.xyz',
+    version=version,
+    author=author,
+    author_email=author_email,
     description='Creates PTR records for a DNS Zone',
-    license='GPLv3',
+    license=license,
     long_description=readme('README.md'),
-    url='https://github.com/lightbulb703/ptrrecordsync',
+    url=url,
     packages=['ptrrecordsync'],
     classifiers=[
         'Development Status :: 3 - Alpha',
