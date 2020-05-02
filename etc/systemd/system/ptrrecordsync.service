@@ -8,4 +8,4 @@ Type=simple
 Nice=19
 IOSchedulingClass=2
 IOSchedulingPriority=7
-ExecStart=/usr/local/bin/ptrrecordsync -z $ZONEFILE -k $KEYFILE
+ExecStart=/usr/local/bin/ptrrecordsync $ZONEFILE $KEYFILE
