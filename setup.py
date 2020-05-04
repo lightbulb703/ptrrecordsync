@@ -14,15 +14,21 @@ from setuptools.command.install import install
 def readme(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
 
-class BindTest(test):
-    def finalize_options(self):
-        super().finalize_options()
-        self.test_suite = True
-        self.test_args = []
+#class BindTest(test):
+#    def finalize_options(self):
+#        super().finalize_options()
+#        self.test_suite = True
+#        self.test_args = []
 
-    def run_tests(self):
-        if not os.environ.get('TEST_NO_EXAMPLES'):
-            script_path = os.path.dirname(os.path.realpath(__file__))
+#    def run_tests(self):
+#        if not os.environ.get('TEST_NO_EXAMPLES'):
+#            script_path = os.path.dirname(os.path.realpath(__file__))
+
+#class CustomInstallCommand(install):
+#    def run(self):
+#        for item in self.items():
+#            print(item)
+        #install.run(self, '--record files.txt')
 
 setup(
     name='ptrrecordsync',
@@ -43,12 +49,12 @@ setup(
         'Programming Language :: Python :: 3 :: Only',
         'Topic :: Internet :: Name Service (DNS)'
     ],
-    data_files = [('/etc/ptrrecordsync.conf',
-        ['etc/ptrrecordsync.conf']),
-        ('/etc/systemd/system/ptrrecordsync.service',
-        ['etc/systemd/system/ptrrecordsync.service']),
-        ('/etc/systemd/system/ptrrecordsync.timer',
-        ['etc/systemd/system/ptrrecordsync.timer'])],
+#    cmdclass = {
+#        'install': CustomInstallCommand,
+#    },
+    data_files = [('/etc', ['etc/ptrrecordsync.conf']),
+        ('/etc/systemd/system', ['etc/systemd/system/ptrrecordsync.timer']),
+        ('/etc/systemd/system', ['etc/systemd/system/ptrrecordsync.service'])],
     entry_points={
         'console_scripts': ['ptrrecordsync = ptrrecordsync.__main__:main', ],
     }
