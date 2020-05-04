@@ -9,6 +9,7 @@ from ptrrecordsync import __url__ as url
 
 from setuptools import setup
 from setuptools.command.test import test
+from setuptools.command.install import install
 
 def readme(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
@@ -22,7 +23,6 @@ class BindTest(test):
     def run_tests(self):
         if not os.environ.get('TEST_NO_EXAMPLES'):
             script_path = os.path.dirname(os.path.realpath(__file__))
-
 
 setup(
     name='ptrrecordsync',
@@ -43,6 +43,12 @@ setup(
         'Programming Language :: Python :: 3 :: Only',
         'Topic :: Internet :: Name Service (DNS)'
     ],
+    data_files = [('/etc/ptrrecordsync.conf',
+        ['etc/ptrrecordsync.conf']),
+        ('/etc/systemd/system/ptrrecordsync.service',
+        ['etc/systemd/system/ptrrecordsync.service']),
+        ('/etc/systemd/system/ptrrecordsync.timer',
+        ['etc/systemd/system/ptrrecordsync.timer'])],
     entry_points={
         'console_scripts': ['ptrrecordsync = ptrrecordsync.__main__:main', ],
     }
